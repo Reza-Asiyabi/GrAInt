@@ -33,7 +33,7 @@ with open("Prompts/Prompts.json", "r") as f:
     prompts = json.load(f)
 
 # Define required fields for all proposal sections
-required_fields = ["topic", "objectives", "methods", "impact"]
+required_fields = ["topic", "objectives", "methods", "impact", "call_information"]
 
 # Collect user inputs interactively
 user_inputs = {}
@@ -57,7 +57,7 @@ for section, details in prompts['sections'].items():
     # Call OpenAI API
     response = client.chat.completions.create(
         model= "gpt-4o-mini", #"gpt-5-nano", #  # fast + cost effective
-        messages=[{"role": "system", "content": prompts['general_writer']["prompt"]}, {"role": "user", "content": final_prompt}],
+        messages=[{"role": "system", "content": prompts['general_writer']["prompt"].format(**user_inputs)}, {"role": "user", "content": final_prompt}],
         temperature=0.7
     )
 
@@ -80,7 +80,7 @@ if review_choice == "Y":
     # Call OpenAI API
     response = client.chat.completions.create(
         model="gpt-4o-mini",  # "gpt-5-nano", #  # fast + cost effective
-        messages=[{"role": "system", "content": prompts['consistency_checker']["prompt"]},
+        messages=[{"role": "system", "content": prompts['consistency_checker']["prompt"].format(**user_inputs)},
                   {"role": "user", "content": f"Review this document for consistency based on the system instructions and provide feedbacks and suggestions to improve it. the document: {sections_output}"}],
         temperature=0.7
     )
@@ -128,8 +128,35 @@ else:
     print("Skipped saving.")
 
 
+"""
+topic: developing domain-aware and interpretable AI for above ground biomass estimation from earth observation
+Objectives: embed the ecological knowledge into deep learning model's architecture using intermediate interpretable feature maps to estimate less biased and more accurate AGB suing SAR and multispectral EO data.
+methods: advanced deep learning architectures, satellite data, interpretable and physics-aware deep learning, using both field measured plots and spaceborne LiDAR such as GEDI as the label data
+impact: the developed model will help us obtain less biased AGB maps, it will enable us to use diverse sources of training data, increase the interpretability and domain-awareness of the AI systems, hence improving the domain expert's trust in AI models. the domain-awareness also will alleviate the spurious learning.
+call information: 
+"""
+
+"""
+topic: natureAI will develop a foundational AI that reasons about trees and terrestrial ecosystems, transforming the UK’s capability to design, finance, and deliver nature-based solutions (NbS) to climate change. 
+Objectives: 1) Build natureAI, a multimodal foundational model that encapsulates how trees live, thrive to deliver carbon and biodiversity benefits. we will adapt a pre‑trained AI model with new datasets from remote sensing and forest inventories, constrained with ecological models. 
+2) Develop a) an investor‑grade risk–reward tool for NbS projects, aligned to the UK market and standards, trained on a new geospatial database of project outcomes and costs; and b) a tool for NbS project design and monitoring, that use AI to simplify and improve current processes. 
+3) Embed natureAI and its tools in the UK community of practices around forest ecology and NbS through co‑design with stakeholders, targeting bottlenecks in delivery and investment and ensuring accessibility for under‑served groups. 
+methods: advanced AI models, fine-tuning LLMs for successful tree planting in nature-based solutions, high resolution geospatial imagery, new foundation AI models, new database of NbS project outcomes and carbon offset delivery
+impact: this model will provide decision‑grade intelligence: site suitability; species‑mix and management recommendations; forecasts of carbon sequestration; biodiversity co‑benefits; and risk (drought, pests/disease, wildfire, windthrow, permanence/leakage). The same foundation will support monitoring, reporting, and verification with quantified uncertainty. 
+call information: 
+"""
 
 # Please enter topic: >? AI for sustainable forest management
 # Please enter objectives: >? predict tree biomass, improve monitoring, enable better conservation polic
 # Please enter methods: >? deep learning, satellite data, physics-aware modeling
 # Please enter impact: >? climate change mitigation, biodiversity protection
+
+"""
+Improvement Notes:
+
+- the user should be able to provide some instructions, such as the funding call to assist the model.
+- the user must be able to provide some references to the model.
+- add the capability to upload an existing proposal and ask for review and then revision based on the reviews and also feedbacks from the user.
+  
+
+"""
