@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-slate-100 text-slate-900 antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  /* Smooth scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-slate-400;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium
+           bg-brand-500 text-white hover:bg-brand-600 disabled:opacity-50
+           disabled:cursor-not-allowed transition-colors;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium
+           bg-white text-slate-700 hover:bg-slate-50 border border-slate-200
+           disabled:opacity-50 transition-colors;
+  }
+  .input-field {
+    @apply w-full text-sm border border-slate-200 rounded-lg px-3 py-2.5
+           focus:outline-none focus:ring-2 focus:ring-brand-400 bg-white
+           placeholder:text-slate-400 text-slate-800;
+  }
+  /* Sidebar scrollbar – darker for contrast on dark bg */
+  .sidebar-scroll::-webkit-scrollbar-thumb {
+    @apply bg-slate-700;
+  }
+
+  /* Skeleton shimmer animation */
+  .skeleton {
+    @apply bg-slate-200 rounded animate-pulse;
+  }
+
+  /* Fade-in for section cards */
+  .fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
