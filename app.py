@@ -136,16 +136,6 @@ impact: the developed model will help us obtain less biased AGB maps, it will en
 call information: 
 """
 
-"""
-topic: natureAI will develop a foundational AI that reasons about trees and terrestrial ecosystems, transforming the UK’s capability to design, finance, and deliver nature-based solutions (NbS) to climate change. 
-Objectives: 1) Build natureAI, a multimodal foundational model that encapsulates how trees live, thrive to deliver carbon and biodiversity benefits. we will adapt a pre‑trained AI model with new datasets from remote sensing and forest inventories, constrained with ecological models. 
-2) Develop a) an investor‑grade risk–reward tool for NbS projects, aligned to the UK market and standards, trained on a new geospatial database of project outcomes and costs; and b) a tool for NbS project design and monitoring, that use AI to simplify and improve current processes. 
-3) Embed natureAI and its tools in the UK community of practices around forest ecology and NbS through co‑design with stakeholders, targeting bottlenecks in delivery and investment and ensuring accessibility for under‑served groups. 
-methods: advanced AI models, fine-tuning LLMs for successful tree planting in nature-based solutions, high resolution geospatial imagery, new foundation AI models, new database of NbS project outcomes and carbon offset delivery
-impact: this model will provide decision‑grade intelligence: site suitability; species‑mix and management recommendations; forecasts of carbon sequestration; biodiversity co‑benefits; and risk (drought, pests/disease, wildfire, windthrow, permanence/leakage). The same foundation will support monitoring, reporting, and verification with quantified uncertainty. 
-call information: 
-"""
-
 # Please enter topic: >? AI for sustainable forest management
 # Please enter objectives: >? predict tree biomass, improve monitoring, enable better conservation polic
 # Please enter methods: >? deep learning, satellite data, physics-aware modeling
